@@ -5,8 +5,6 @@ plugins {
     id("io.github.dyominmv.java-coroutines-gradle-plugin").version("1.0.0")
 }
 
-version = "1.0.0"
-
 repositories {
     mavenLocal()
     mavenCentral()
