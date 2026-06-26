@@ -16,15 +16,16 @@ dependencies {
     testRuntimeOnly("org.junit.platform:junit-platform-launcher:6.1.0")
 }
 
-
-tasks.compileTestJava {
-    outputs.upToDateWhen { false }
+val transformCoroutines by tasks.register<TransformCoroutines>("transformCoroutines") {
+    dependsOn(tasks.compileJava)
+    classDirectories = tasks.compileJava.flatMap { it.destinationDirectory }.map { listOf(it) }
 }
+
+tasks.jar { dependsOn(transformCoroutines) }
 
 val transformTestCoroutines by tasks.register<TransformCoroutines>("transformTestCoroutines") {
     dependsOn(tasks.compileTestJava)
     classDirectories = tasks.compileTestJava.flatMap { it.destinationDirectory }.map { listOf(it) }
-    outputs.upToDateWhen { false }
 }
 
 tasks.test {

@@ -33,6 +33,7 @@ publishing {
             artifactId = name
             groupId = rootProject.group.toString()
             pom {
+                name = artifactId
                 licenses {
                     license {
                         name = "MIT License"
