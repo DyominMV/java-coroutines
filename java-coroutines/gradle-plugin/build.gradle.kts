@@ -11,7 +11,7 @@ val defaultDescription = "Gradle plugin to create suspendable java methods (aka 
 
 gradlePlugin {
     plugins {
-        register("io.github.dyominmv.java-coroutines-gradle-plugin") {
+        register("java-coroutines-gradle-plugin") {
             id = "io.github.dyominmv.java-coroutines-gradle-plugin"
             displayName = "java-coroutines-gradle-plugin"
             implementationClass = "io.github.dyominmv.javacoroutines.JavaCoroutinesGradlePlugin"
@@ -25,6 +25,7 @@ publishing {
         withType<MavenPublication> {
             artifactId = "java-coroutines-gradle-plugin"
             pom {
+                name = this@withType.artifactId
                 description = defaultDescription
             }
         }
