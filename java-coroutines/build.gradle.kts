@@ -1,2 +1,2 @@
 group = "io.github.dyominmv"
-version = "1.0.1"
+version = "1.0.2"

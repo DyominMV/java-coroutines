@@ -14,11 +14,17 @@ public final class CoroutineImpl<Result> implements Coroutine<Result> {
     }
 
     @Override
-    public void proceed() { result = coroutineBody.apply(continuation); }
+    public void proceed() {
+        if (finished()) throw new IllegalStateException("Coroutine is already finished");
+        result = coroutineBody.apply(continuation);
+    }
 
     @Override
     public boolean finished() { return continuation.finished; }
 
     @Override
-    public Result getResult() { return result; }
+    public Result getResult() {
+        if (!finished()) throw new IllegalStateException("Coroutine is not yet finished");
+        return result;
+    }
 }

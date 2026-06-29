@@ -1,18 +1,17 @@
 package io.github.dyominmv.javacoroutines.transformations;
 
 import io.github.dyominmv.javacoroutines.Continuation;
+import io.github.dyominmv.javacoroutines.Coroutine;
+import io.github.dyominmv.javacoroutines.Utils;
 import io.github.dyominmv.javacoroutines.slotmachine.SlotMachine;
 
-import java.lang.classfile.CodeBuilder;
-import java.lang.classfile.CodeModel;
-import java.lang.classfile.Label;
+import java.lang.classfile.*;
+import java.lang.classfile.instruction.InvokeInstruction;
 import java.lang.classfile.instruction.ReturnInstruction;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
-import static io.github.dyominmv.javacoroutines.CoroutineChecker.isResultInvocation;
-import static io.github.dyominmv.javacoroutines.CoroutineChecker.isSuspendInvocation;
 import static io.github.dyominmv.javacoroutines.Utils.*;
 import static java.lang.classfile.TypeKind.INT;
 
@@ -105,6 +104,21 @@ public class BuildCoroutineBody implements Consumer<CodeBuilder> {
                 cb.accept(codeElement);
             }
         }
+    }
+
+    private boolean isResultInvocation(CodeElement codeElement) {
+        return isInvokeStaticCoroutine(codeElement, "result");
+    }
+
+    private boolean isSuspendInvocation(CodeElement codeElement) {
+        return isInvokeStaticCoroutine(codeElement, "suspend");
+    }
+
+    private boolean isInvokeStaticCoroutine(CodeElement codeElement, String methodName) {
+        return codeElement instanceof InvokeInstruction invoke
+                && invoke.opcode() == Opcode.INVOKESTATIC
+                && invoke.owner().matches(Utils.desc(Coroutine.class))
+                && invoke.name().equalsString(methodName);
     }
 
 }

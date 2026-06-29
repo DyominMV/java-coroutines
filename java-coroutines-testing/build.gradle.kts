@@ -2,7 +2,7 @@ import io.github.dyominmv.javacoroutines.TransformCoroutines
 
 plugins {
     java
-    id("io.github.dyominmv.java-coroutines-gradle-plugin").version("1.0.1")
+    id("io.github.dyominmv.java-coroutines-gradle-plugin").version("1.0.2")
 }
 
 repositories {

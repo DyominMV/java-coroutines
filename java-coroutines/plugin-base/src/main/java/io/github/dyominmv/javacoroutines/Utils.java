@@ -1,6 +1,7 @@
 package io.github.dyominmv.javacoroutines;
 
 import java.lang.classfile.CodeModel;
+import java.lang.classfile.MethodModel;
 import java.lang.classfile.instruction.IncrementInstruction;
 import java.lang.classfile.instruction.LoadInstruction;
 import java.lang.classfile.instruction.StoreInstruction;
@@ -34,5 +35,9 @@ public class Utils {
                 result = Math.max(incrementInstruction.slot() + 1, result);
 
         return result;
+    }
+
+    public static boolean isCoroutine(MethodModel method) {
+        return method.methodTypeSymbol().returnType().equals(Utils.desc(Coroutine.class)) && method.code().isPresent();
     }
 }

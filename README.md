@@ -14,7 +14,7 @@ in `build.gradle.kts`
 ```kotlin
 plugins {
     java
-    id("io.github.dyominmv.java-coroutines-gradle-plugin").version("1.0.1")
+    id("io.github.dyominmv.java-coroutines-gradle-plugin").version("1.0.2")
 }
 
 val transformCoroutines by tasks.register<TransformCoroutines>("transformCoroutines") {

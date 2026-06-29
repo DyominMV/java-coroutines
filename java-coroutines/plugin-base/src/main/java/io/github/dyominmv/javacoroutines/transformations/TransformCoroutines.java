@@ -15,8 +15,8 @@ import java.lang.reflect.AccessFlag;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import static io.github.dyominmv.javacoroutines.CoroutineChecker.isCoroutine;
 import static io.github.dyominmv.javacoroutines.Utils.desc;
+import static io.github.dyominmv.javacoroutines.Utils.isCoroutine;
 import static io.github.dyominmv.javacoroutines.Utils.methodDesc;
 
 public class TransformCoroutines implements ClassTransform {
