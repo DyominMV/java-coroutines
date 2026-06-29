@@ -7,14 +7,14 @@ import java.util.ArrayDeque;
 ///
 /// Storing order:
 /// 1. store all values of operand stack (top to bottom) using `store()`
-/// 2. store all local variables using `storeLocal`
+/// 2. store all local variables using `storeLocal()`
 ///
 /// Loading order:
 /// 1. load all values of operand stack using `load<type>()`
 /// 2. load all local variables using `load<type>()`
 ///
 /// note that there is no difference between type-1 integral primitives for jvm verification mechanism, thus `loadInt`
-/// can also be used to load value of types `short`, 'char', 'byte', and 'boolean'.
+/// can also be used to load value of types `short`, `char`, `byte`, and `boolean`.
 @SuppressWarnings("DataFlowIssue")
 public final class Continuation {
 
